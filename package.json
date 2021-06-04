@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/AlphaRunic/Wizard101-API-TS-Wrapper/issues"
   },
-  "homepage": "https://github.com/AlphaRunic/Wizard101-API-TS-Wrapper#readme",
+  "homepage": "https://wizard101-api.herokuapp.com",
   "dependencies": {
     "@types/node-fetch": "^2.5.10",
     "node-fetch": "^2.6.1"
