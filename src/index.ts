@@ -28,6 +28,11 @@ export interface WorldList {
     karamelle: World;
 }
 
+interface Response {
+    Success: boolean;
+    Results: World & WorldList & string
+}
+
 export class Wizard101 {
     private static readonly baseURL = "https://wizard101-api.herokuapp.com/";
 
@@ -36,11 +41,11 @@ export class Wizard101 {
             .then(res => res.json());
     }
 
-    public static async GetWorlds() {
-        return this.RequestAPI<WorldList>("worlds");
+    public static async GetWorlds(): Promise<WorldList> {
+        return (await this.RequestAPI<Response>("worlds")).Results;
     }
 
     public static async GetWorld(worldName: string): Promise<World> {
-        return this.RequestAPI<World>("worlds/" + encodeURIComponent(worldName));
+        return (await this.RequestAPI<Response>("worlds/" + encodeURIComponent(worldName))).Results;
     }
 }
