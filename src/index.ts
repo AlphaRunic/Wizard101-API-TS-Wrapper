@@ -29,7 +29,7 @@ export interface WorldList {
 }
 
 export class Wizard101 {
-    private static readonly baseURL = "https://wizard101-api.herokuapp.com/v1";
+    private static readonly baseURL = "https://wizard101-api.herokuapp.com/";
 
     public static async RequestAPI<Res>(path: string): Promise<Res> {
         return fetch(this.baseURL + path)
