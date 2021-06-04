@@ -1,16 +1,16 @@
 import { World } from "./Types/World";
 import fetch from "node-fetch";
 
-export namespace Wizard101 {
-    const baseURL = "https://wizard101-api.herokuapp.com/v1";
+export class Wizard101 {
+    private static readonly baseURL = "https://wizard101-api.herokuapp.com/v1";
 
-    async function RequestAPI<Res>(path: string): Promise<Res> {
-        return fetch(baseURL + path)
+    public static async RequestAPI<Res>(path: string): Promise<Res> {
+        return fetch(this.baseURL + path)
             .then(res => res.json());
     }
 
-    export async function GetWorlds() {
-        return RequestAPI<{
+    public static async GetWorlds() {
+        return this.RequestAPI<{
             wizardcity: World;
             krokotopia: World;
             marleybone: World;
@@ -28,7 +28,7 @@ export namespace Wizard101 {
         }>("worlds");
     }
 
-    export async function GetWorld(worldName: string): Promise<World> {
-        return RequestAPI<World>("worlds/" + encodeURIComponent(worldName));
+    public static async GetWorld(worldName: string): Promise<World> {
+        return this.RequestAPI<World>("worlds/" + encodeURIComponent(worldName));
     }
 }
