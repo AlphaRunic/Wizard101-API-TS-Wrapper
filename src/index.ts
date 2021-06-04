@@ -1,5 +1,32 @@
-import { World } from "./Types/World";
 import fetch from "node-fetch";
+
+export interface World {
+    Name: string;
+    Quests: number;
+    LevelRange: {
+        First: number;
+        Second: number;
+    };
+    Abbreviation: string;
+    Areas: string[];
+}
+
+export interface WorldList {
+    wizardcity: World;
+    krokotopia: World;
+    marleybone: World;
+    mooshu: World;
+    dragonspyre: World;
+    celestia: World;
+    zafaria: World;
+    avalon: World;
+    azteca: World;
+    khrysalis: World;
+    polaris: World;
+    mirage: World;
+    empyrea: World;
+    karamelle: World;
+}
 
 export class Wizard101 {
     private static readonly baseURL = "https://wizard101-api.herokuapp.com/v1";
@@ -10,22 +37,7 @@ export class Wizard101 {
     }
 
     public static async GetWorlds() {
-        return this.RequestAPI<{
-            wizardcity: World;
-            krokotopia: World;
-            marleybone: World;
-            mooshu: World;
-            dragonspyre: World;
-            celestia: World;
-            zafaria: World;
-            avalon: World;
-            azteca: World;
-            khrysalis: World;
-            polaris: World;
-            mirage: World;
-            empyrea: World;
-            karamelle: World;
-        }>("worlds");
+        return this.RequestAPI<WorldList>("worlds");
     }
 
     public static async GetWorld(worldName: string): Promise<World> {
