@@ -1,0 +1,34 @@
+{
+  "name": "wizard101-api",
+  "version": "1.0.0",
+  "description": "A TypeScript/JavaScript wrapper for the unofficial Wizard101 API created by me.",
+  "main": "dist/Main.js",
+  "scripts": {
+    "start": "node dist/Main.js",
+    "test": "echo \"no test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlphaRunic/Wizard101-API-TS-Wrapper.git"
+  },
+  "keywords": [
+    "ts",
+    "typescript",
+    "wrapper",
+    "api",
+    "restful",
+    "rest",
+    "wizard101",
+    "wizard101-api"
+  ],
+  "author": "AlphaRunic",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/AlphaRunic/Wizard101-API-TS-Wrapper/issues"
+  },
+  "homepage": "https://github.com/AlphaRunic/Wizard101-API-TS-Wrapper#readme",
+  "dependencies": {
+    "@types/node-fetch": "^2.5.10",
+    "node-fetch": "^2.6.1"
+  }
+}
