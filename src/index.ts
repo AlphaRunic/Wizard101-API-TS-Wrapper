@@ -28,24 +28,29 @@ export interface WorldList {
     karamelle: World;
 }
 
-interface Response {
+interface APIError {
+    Code: number;
+    Message: string;
+}
+
+interface Response<Result = World & WorldList & string> {
     Success: boolean;
-    Results: World & WorldList & string
+    Results: Result
 }
 
 export class Wizard101 {
     private static readonly baseURL = "https://wizard101-api.herokuapp.com/";
 
-    public static async RequestAPI<Res>(path: string): Promise<Res> {
+    public static async GetWorlds<T = Response<WorldList & APIError>>(): Promise<T> {
+        return await this.RequestAPI<T>("worlds");
+    }
+
+    public static async GetWorld<T = Response<World & APIError>>(worldName: string): Promise<T> {
+        return this.RequestAPI<T>("worlds/" + encodeURIComponent(worldName));
+    }
+    
+    private static async RequestAPI<Res>(path: string): Promise<Res> {
         return fetch(this.baseURL + path)
             .then(res => res.json());
-    }
-
-    public static async GetWorlds(): Promise<WorldList> {
-        return (await this.RequestAPI<Response>("worlds")).Results;
-    }
-
-    public static async GetWorld(worldName: string): Promise<World> {
-        return (await this.RequestAPI<Response>("worlds/" + encodeURIComponent(worldName))).Results;
     }
 }
